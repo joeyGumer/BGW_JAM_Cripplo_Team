@@ -9,6 +9,7 @@ public enum PLAYER_DIRECTION
     P_LEFT,
     P_DOWN,
 }
+
 public class Player_behaviour : MonoBehaviour {
 
     public GameObject boomerang = null;
