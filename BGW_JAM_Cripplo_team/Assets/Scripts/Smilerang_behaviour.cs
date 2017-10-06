@@ -9,6 +9,7 @@ public class Smilerang_behaviour : MonoBehaviour {
     public float s_acceleration = 5.0f;
     public Vector2 s_direction = new Vector2( 0.0f, 1.0f );
 
+    public bool s_collidable = false;
     Vector2 s_movement = Vector2.zero;
 
 	// Use this for initialization
@@ -23,6 +24,21 @@ public class Smilerang_behaviour : MonoBehaviour {
         Seek();
         Move();
 	}
+    void OnTriggerExit2D(Collider2D coll)
+    {
+        if(coll.gameObject.tag == "Player")
+            s_collidable = true;
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if(coll.gameObject.tag == "wall")
+        {
+           /*ContactPoint2D coll_point =  coll.contacts[0];
+           Vector2 normal = coll_point.normal
+           if (normal.x != 0.0f)*/
+        }
+    }
 
     void Move()
     {

@@ -5,17 +5,25 @@ using UnityEngine;
 public class Player_behaviour : MonoBehaviour {
 
     public GameObject boomerang = null;
+    public bool alive = true;
+    public bool p_multiboomerang = false;
+    public uint p_hp_max = 3;
     public float p_speed = 5.0f;
     public bool p_with_acceleration = false;
 
+    bool p_boomerang_current = false;
+    uint p_hp_current;
+    //Collider2D col;
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
         HandleInput();
+
 	}
 
     void HandleInput()
@@ -24,7 +32,22 @@ public class Player_behaviour : MonoBehaviour {
 
         if (Input.GetKeyDown("space"))
         {
-            Instantiate(boomerang);
+            ThrowSmilerang();
+        }
+    }
+
+ 
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "smilerang")
+        {
+            if (coll.gameObject.GetComponent<Smilerang_behaviour>().s_collidable)
+            {
+                GetHurt();
+                Destroy(coll.gameObject);
+
+            }
+
         }
     }
 
@@ -71,7 +94,29 @@ public class Player_behaviour : MonoBehaviour {
     //Throws Smilerang
     void ThrowSmilerang()
     {
-        Smilerang_behaviour boom_behaviour = Instantiate(boomerang).GetComponent<Smilerang_behaviour>();
-        boom_behaviour.AssignTarget(gameObject);
+        if (p_multiboomerang || !p_boomerang_current)
+        {
+            Smilerang_behaviour boom_behaviour = Instantiate(boomerang).GetComponent<Smilerang_behaviour>();
+            boom_behaviour.AssignTarget(gameObject);
+            p_boomerang_current = true;
+        }
+    }
+
+    //Activate when the player gets hurts
+    void GetHurt()
+    {
+        p_hp_current--;
+        //Reduce the UI hp
+
+        if(p_hp_current <= 0)
+        {
+            //Player is dead
+            alive = false;
+        }
+
+        if(!p_multiboomerang)
+        {
+            p_boomerang_current = false;
+        }
     }
 }
