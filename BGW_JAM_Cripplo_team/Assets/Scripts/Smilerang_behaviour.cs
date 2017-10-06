@@ -26,19 +26,32 @@ public class Smilerang_behaviour : MonoBehaviour {
 	}
     void OnTriggerExit2D(Collider2D coll)
     {
-        if(coll.gameObject.tag == "Player")
+        if(coll.tag == "Player")
             s_collidable = true;
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "wall")
+        {
+            /* ContactPoint2D coll_point = coll.contacts[0];
+             Vector2 normal = coll_point.normal;
+             CalculateReflexion(normal);*/
+            s_movement = -s_movement;
+
+        }
+    }
+
+    /*void OnCollisionEnter2D(Collision2D coll)
     {
         if(coll.gameObject.tag == "wall")
         {
-           /*ContactPoint2D coll_point =  coll.contacts[0];
-           Vector2 normal = coll_point.normal
-           if (normal.x != 0.0f)*/
+
+           ContactPoint2D coll_point =  coll.contacts[0];
+            Vector2 normal = coll_point.normal;
+            CalculateReflexion(normal);
         }
-    }
+    }*/
 
     void Move()
     {
@@ -65,5 +78,20 @@ public class Smilerang_behaviour : MonoBehaviour {
     public void AssignTarget(GameObject go)
     {
         target = go;
+    }
+
+    void CalculateReflexion(Vector2 normal)
+    {
+        Vector2 dir = s_movement.normalized;
+
+        float angle_dir = Mathf.Atan2(dir.y, dir.x);
+        float angle_normal = Mathf.Atan2(normal.y, normal.x);
+
+        float angle_reflex = 2 * angle_normal - angle_dir;
+
+        float reflex_x = Mathf.Cos(angle_reflex) * s_movement.magnitude;
+        float reflex_y = Mathf.Sin(angle_reflex) * s_movement.magnitude;
+
+        s_movement = new Vector2(reflex_x, reflex_y);
     }
 }

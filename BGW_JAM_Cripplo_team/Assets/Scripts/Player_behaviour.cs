@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PLAYER_DIRECTION
+{
+    P_RIGHT,
+    P_UP,
+    P_LEFT,
+    P_DOWN,
+}
 public class Player_behaviour : MonoBehaviour {
 
     public GameObject boomerang = null;
@@ -10,6 +17,8 @@ public class Player_behaviour : MonoBehaviour {
     public uint p_hp_max = 3;
     public float p_speed = 5.0f;
     public bool p_with_acceleration = false;
+
+    public PLAYER_DIRECTION p_dir_state;
 
     Vector3 p_direction = Vector3.zero;
     bool p_boomerang_current = false;
@@ -56,6 +65,8 @@ public class Player_behaviour : MonoBehaviour {
             }
 
         }
+
+       
 
 
     }
@@ -136,5 +147,32 @@ public class Player_behaviour : MonoBehaviour {
         {
             p_boomerang_current = false;
         }
+    }
+
+    void DirectionState()
+    {
+        float dir_angle = Mathf.Atan2(p_direction.y, p_direction.x);
+
+        if(dir_angle < 45.0f || dir_angle > 315)
+        {
+            //RIGHT
+            p_dir_state = PLAYER_DIRECTION.P_RIGHT;
+        }
+        else if(dir_angle < 135)
+        {
+            //UP
+            p_dir_state = PLAYER_DIRECTION.P_UP;
+        }
+        else if(dir_angle < 225 )
+        {
+            //LEFT
+            p_dir_state = PLAYER_DIRECTION.P_LEFT;
+        }
+        else if(dir_angle < 315 )
+        {
+            //DOWN
+            p_dir_state = PLAYER_DIRECTION.P_DOWN;
+        }
+
     }
 }
