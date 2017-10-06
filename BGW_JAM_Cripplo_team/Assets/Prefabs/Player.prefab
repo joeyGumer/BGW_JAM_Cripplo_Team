@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac417d187f36cc408185316d00ce679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boomerang: {fileID: 0}
   p_speed: 2
   p_with_acceleration: 0
 --- !u!212 &212722593171026906

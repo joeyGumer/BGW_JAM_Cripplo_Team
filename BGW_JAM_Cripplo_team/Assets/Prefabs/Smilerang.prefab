@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  s_max_velocity: 0.1
-  s_acceleration: 2.5
+  s_max_velocity: 0.15
+  s_acceleration: 0.005
   s_direction: {x: 0, y: 1}
 --- !u!212 &212252869670840362
 SpriteRenderer:

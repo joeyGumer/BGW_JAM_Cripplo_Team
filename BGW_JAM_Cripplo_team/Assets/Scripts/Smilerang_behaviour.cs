@@ -14,6 +14,8 @@ public class Smilerang_behaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         s_movement = s_direction * s_max_velocity;
+        target = GameObject.Find("Player");
+        transform.position = target.transform.position; 
 	}
 	
 	// Update is called once per frame
@@ -44,4 +46,8 @@ public class Smilerang_behaviour : MonoBehaviour {
         return ret;
     }
     
+    public void AssignTarget(GameObject go)
+    {
+        target = go;
+    }
 }

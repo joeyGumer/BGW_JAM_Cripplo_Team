@@ -147,6 +147,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114388094531519580, guid: 29c603f54ef471044a663245f20bb708,
+        type: 2}
+      propertyPath: boomerang
+      value: 
+      objectReference: {fileID: 1802595061376972, guid: ea429edc0ee9fe44e85d0444db782054,
+        type: 2}
+    - target: {fileID: 114388094531519580, guid: 29c603f54ef471044a663245f20bb708,
+        type: 2}
+      propertyPath: p_with_acceleration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880408497225830, guid: 29c603f54ef471044a663245f20bb708, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29c603f54ef471044a663245f20bb708, type: 2}
   m_IsPrefabParent: 0

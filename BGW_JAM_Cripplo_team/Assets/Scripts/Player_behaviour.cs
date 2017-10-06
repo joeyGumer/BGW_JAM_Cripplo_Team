@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player_behaviour : MonoBehaviour {
 
+    public GameObject boomerang = null;
     public float p_speed = 5.0f;
     public bool p_with_acceleration = false;
 
@@ -18,6 +19,17 @@ public class Player_behaviour : MonoBehaviour {
 	}
 
     void HandleInput()
+    {
+        Movement();
+
+        if (Input.GetKeyDown("space"))
+        {
+            Instantiate(boomerang);
+        }
+    }
+
+    //Handles player movement
+    void Movement()
     {
         float mov_horizontal = 0.0f, mov_vertical = 0.0f, m = 0.0f;
 
@@ -54,5 +66,12 @@ public class Player_behaviour : MonoBehaviour {
         mov.y = mov_vertical * sp;
 
         transform.Translate(mov);
+    }
+
+    //Throws Smilerang
+    void ThrowSmilerang()
+    {
+        Smilerang_behaviour boom_behaviour = Instantiate(boomerang).GetComponent<Smilerang_behaviour>();
+        boom_behaviour.AssignTarget(gameObject);
     }
 }
