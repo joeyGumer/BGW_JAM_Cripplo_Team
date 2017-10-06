@@ -11,8 +11,10 @@ public class Player_behaviour : MonoBehaviour {
     public float p_speed = 5.0f;
     public bool p_with_acceleration = false;
 
+    Vector3 p_direction = Vector3.zero;
     bool p_boomerang_current = false;
     uint p_hp_current;
+
     //Collider2D col;
 	// Use this for initialization
 	void Start ()
@@ -21,9 +23,14 @@ public class Player_behaviour : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        HandleInput();
+    void FixedUpdate()
+    {
+      
+    }
 
+	void Update ()
+    {
+        HandleInput();
 	}
 
     void HandleInput()
@@ -49,11 +56,15 @@ public class Player_behaviour : MonoBehaviour {
             }
 
         }
+
+
     }
 
     //Handles player movement
     void Movement()
     {
+        Vector3 p_last_position = transform.position;
+
         float mov_horizontal = 0.0f, mov_vertical = 0.0f, m = 0.0f;
 
         if (p_with_acceleration)
@@ -89,6 +100,8 @@ public class Player_behaviour : MonoBehaviour {
         mov.y = mov_vertical * sp;
 
         transform.Translate(mov);
+             
+        p_direction = (p_last_position - transform.position).normalized;
     }
 
     //Throws Smilerang
@@ -98,6 +111,11 @@ public class Player_behaviour : MonoBehaviour {
         {
             Smilerang_behaviour boom_behaviour = Instantiate(boomerang).GetComponent<Smilerang_behaviour>();
             boom_behaviour.AssignTarget(gameObject);
+
+            if (p_direction != Vector3.zero)
+                boom_behaviour.s_direction = -p_direction;
+            else
+                boom_behaviour.s_direction = new Vector3(0.0f, -1.0f);   
             p_boomerang_current = true;
         }
     }
