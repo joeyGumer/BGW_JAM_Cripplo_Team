@@ -64,24 +64,39 @@ public class Enemy_Behaviour : MonoBehaviour
                 gameObject.GetComponent<Collider2D>().isTrigger = true;
 
                 //Count enemy to win
+                GameObject.Find("Main Game").GetComponent<Game_cycle>().KillEnemy();
             }
         }
 
     }
 
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        string tag = coll.collider.tag;
+
+        if (tag == "wall" || tag == "item" || tag == "enemy")
+        {
+            ChangeDirection();
+            ChangeObjective();
+        }
+    }
+
     void Movement()
     {
-        switch (e_type)
+        if (e_state != Enemy_state.E_HAPPY)
         {
-            case Enemy_Type.ENEMY_STATIC:
-                break;
-            case Enemy_Type.ENEMY_KINEMATIC:
-                MovementKinematic();
-                break;
-            case Enemy_Type.ENEMY_RANDOM:
-                MovementRandom();
-                break;
+            switch (e_type)
+            {
+                case Enemy_Type.ENEMY_STATIC:
+                    break;
+                case Enemy_Type.ENEMY_KINEMATIC:
+                    MovementKinematic();
+                    break;
+                case Enemy_Type.ENEMY_RANDOM:
+                    MovementRandom();
+                    break;
 
+            }
         }
     }
 
@@ -105,23 +120,8 @@ public class Enemy_Behaviour : MonoBehaviour
         Vector3 distance = e_target_position - transform.position;
         if (distance.magnitude < e_target_min_distance)
         {
-            int rand = Random.Range(0, 3);
-            switch (rand)
-            {
-                case 0:
-                    e_dir = new Vector3(-1.0f, 0.0f);
-                    break;
-                case 1:
-                    e_dir = new Vector3(1.0f, 0.0f);
-                    break;
-                case 2:
-                    e_dir = new Vector3(0.0f, -1.0f);
-                    break;
-                case 3:
-                    e_dir = new Vector3(0.0f, 1.0f);
-                    break;
-            }
 
+            ChangeDirection();
             ChangeObjective();
         }
     }
@@ -135,6 +135,25 @@ public class Enemy_Behaviour : MonoBehaviour
         e_target_position = e_start_position + e_dir * e_max_distance;
     }
 
+    void ChangeDirection()
+    {
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0:
+                e_dir = new Vector3(-1.0f, 0.0f);
+                break;
+            case 1:
+                e_dir = new Vector3(1.0f, 0.0f);
+                break;
+            case 2:
+                e_dir = new Vector3(0.0f, -1.0f);
+                break;
+            case 3:
+                e_dir = new Vector3(0.0f, 1.0f);
+                break;
+        }
+    }
 
     void DirectionState()
     {

@@ -36,8 +36,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4480042613438770}
   - component: {fileID: 114381833026939092}
-  - component: {fileID: 61600511007707982}
   - component: {fileID: 50031072883515870}
+  - component: {fileID: 58642769279050666}
   m_Layer: 8
   m_Name: Smilerang
   m_TagString: smilerang
@@ -67,7 +67,7 @@ Transform:
   m_GameObject: {fileID: 1788169919420006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.087267764, y: 0.07010436, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 4480042613438770}
   m_RootOrder: 0
@@ -92,8 +92,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61600511007707982
-BoxCollider2D:
+--- !u!58 &58642769279050666
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -104,19 +104,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000029802322, y: 0.0046852827}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0.057679832}
   serializedVersion: 2
-  m_Size: {x: 0.5314769, y: 0.5595882}
-  m_EdgeRadius: 0
+  m_Radius: 0.2225874
 --- !u!114 &114381833026939092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,10 +119,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  s_base_max_velocity: 0.1
-  s_item_speed_change: 0.1
-  s_acceleration: 0.005
+  s_base_max_velocity: 0.15
+  s_item_speed_change: 0.3
+  s_acceleration: 0.007
+  s_rot_velocity: 10
   s_direction: {x: 0, y: 1}
+  s_max_velocity: 0
   s_collidable: 0
 --- !u!212 &212252869670840362
 SpriteRenderer:
@@ -165,9 +157,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0d6223d7403fa30479f8a23c3b0a1c2d, type: 3}
-  m_Color: {r: 0.78676474, g: 0.39338237, b: 0.39338237, a: 1}
+  m_SortingOrder: 8
+  m_Sprite: {fileID: 21300000, guid: 3b78ae1721058074692846019389cefc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -43,14 +43,14 @@ public class Item_behaviour : MonoBehaviour {
             if (col.tag == "smilerang")
             {
                 //Activate choose effect
-                ChooseEffect();
+                //ChooseEffect();
                 no_more_effects = true;
-                Destroy(gameObject);
+                GetComponentInChildren<Animator>().Play("ItemPick");
             }
         }  
     }
 
-    void ChooseEffect()
+    public void ChooseEffect()
     {
         //int result = Random.Range(0, 4);
         int result = (int)type;

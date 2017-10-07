@@ -8,6 +8,7 @@ public class Smilerang_behaviour : MonoBehaviour {
     public float s_base_max_velocity = 10.0f;
     public float s_item_speed_change = 0.1f;
     public float s_acceleration = 5.0f;
+    public float s_rot_velocity = 1.0f;
     public Vector2 s_direction = new Vector2( 0.0f, 1.0f );
 
     public float s_max_velocity;
@@ -19,6 +20,7 @@ public class Smilerang_behaviour : MonoBehaviour {
 
         s_max_velocity = s_base_max_velocity;
 
+
         s_movement = s_direction * s_max_velocity;
         target = GameObject.Find("Player");
         transform.position = target.transform.position; 
@@ -26,6 +28,8 @@ public class Smilerang_behaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        transform.RotateAroundLocal(new Vector3(0.0f, 0.0f, 1.0f), s_rot_velocity * Time.deltaTime);
         Seek();
         Move();
 	}
