@@ -12,25 +12,36 @@ public enum PLAYER_DIRECTION
 
 public class Player_behaviour : MonoBehaviour {
 
+    public GameObject item = null;
     public GameObject boomerang = null;
     public bool alive = true;
     public bool p_multiboomerang = false;
     public uint p_hp_max = 3;
     public float p_speed = 5.0f;
     public bool p_with_acceleration = false;
+    public uint p_boomerang_limit = 1;
+    public float p_smile_effect_time = 5.0f;
+    public float p_double_effect_time =  1.0f;
+    public List<buff> buffs;
+
 
     public PLAYER_DIRECTION p_dir_state;
 
     Vector3 p_direction = Vector3.zero;
-    bool p_boomerang_current = false;
-    uint p_hp_current;
+    public int p_boomerang_current = 0;
+    public float p_smile_timer = 0.0f;
+    public bool p_smile_timer_on = false;
+    public float p_limit_timer = 0.0f;
+    public bool p_limit_timer_on = false;
+    public uint p_hp_current;
 
     //Collider2D col;
 	// Use this for initialization
 	void Start ()
     {
-        
-	}
+        p_hp_current = p_hp_max;
+
+    }
 	
 	// Update is called once per frame
     void FixedUpdate()
@@ -40,6 +51,35 @@ public class Player_behaviour : MonoBehaviour {
 
 	void Update ()
     {
+        if (p_smile_timer_on)
+        {
+            p_smile_timer -= Time.deltaTime;
+
+            if (p_smile_timer <= 0.0f)
+            {
+                p_smile_timer_on = false;
+                item.GetComponent<Item_behaviour>().SmileReset();
+            }
+        }
+
+        if(p_limit_timer_on)
+        {
+            p_limit_timer -= Time.deltaTime;
+
+            if(p_limit_timer <= 0.0f)
+            {
+                ThrowSmilerang();
+                if(p_boomerang_current < p_boomerang_limit)
+                {
+                    p_limit_timer = p_double_effect_time;
+                }
+                else
+                {
+                    p_limit_timer_on = false;
+                }
+            }
+        }
+
         HandleInput();
 	}
 
@@ -62,14 +102,8 @@ public class Player_behaviour : MonoBehaviour {
             {
                 GetHurt();
                 Destroy(coll.gameObject);
-
             }
-
         }
-
-       
-
-
     }
 
     //Handles player movement
@@ -117,9 +151,9 @@ public class Player_behaviour : MonoBehaviour {
     }
 
     //Throws Smilerang
-    void ThrowSmilerang()
+    public void ThrowSmilerang()
     {
-        if (p_multiboomerang || !p_boomerang_current)
+        if (p_multiboomerang || p_boomerang_current < p_boomerang_limit)
         {
             Smilerang_behaviour boom_behaviour = Instantiate(boomerang).GetComponent<Smilerang_behaviour>();
             boom_behaviour.AssignTarget(gameObject);
@@ -128,7 +162,8 @@ public class Player_behaviour : MonoBehaviour {
                 boom_behaviour.s_direction = -p_direction;
             else
                 boom_behaviour.s_direction = new Vector3(0.0f, -1.0f);   
-            p_boomerang_current = true;
+            p_boomerang_current++;
+
         }
     }
 
@@ -146,9 +181,20 @@ public class Player_behaviour : MonoBehaviour {
 
         if(!p_multiboomerang)
         {
-            p_boomerang_current = false;
+            p_boomerang_current--;
+            if(p_boomerang_current < 0)
+            {
+                p_boomerang_current = 0;
+            }
+
+            if(p_boomerang_limit > 1)
+            {
+                p_boomerang_limit--;
+            }
         }
     }
+
+
 
     void DirectionState()
     {
@@ -175,5 +221,37 @@ public class Player_behaviour : MonoBehaviour {
             p_dir_state = PLAYER_DIRECTION.P_DOWN;
         }
 
+    }
+
+    //Item effects
+    public void DoubleLimit()
+    {
+        p_boomerang_limit *= 2;
+
+        GameObject.Find("Player").GetComponent<Player_behaviour>().ThrowSmilerang();
+        p_limit_timer_on = true;
+        p_limit_timer = p_double_effect_time;
+
+        //Time?
+    }
+
+    void IterateBuffs()
+    {
+        //Reset
+        p_boomerang_limit = 1;
+        item.GetComponent<Item_behaviour>().SmileReset();
+        
+        //Iterate buffs
+
+        //Add buffs
+
+        
+    }
+
+    //Smile timer
+    public void StartSmileTimer()
+    {
+        p_smile_timer_on = true;
+        p_smile_timer = p_smile_effect_time;
     }
 }

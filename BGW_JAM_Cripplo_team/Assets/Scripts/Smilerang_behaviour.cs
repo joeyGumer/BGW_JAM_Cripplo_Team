@@ -5,15 +5,20 @@ using UnityEngine;
 public class Smilerang_behaviour : MonoBehaviour {
 
     public GameObject target = null;
-    public float s_max_velocity = 10.0f;
+    public float s_base_max_velocity = 10.0f;
+    public float s_item_speed_change = 0.1f;
     public float s_acceleration = 5.0f;
     public Vector2 s_direction = new Vector2( 0.0f, 1.0f );
 
+    public float s_max_velocity;
     public bool s_collidable = false;
     Vector2 s_movement = Vector2.zero;
 
 	// Use this for initialization
 	void Start () {
+
+        s_max_velocity = s_base_max_velocity;
+
         s_movement = s_direction * s_max_velocity;
         target = GameObject.Find("Player");
         transform.position = target.transform.position; 
@@ -93,5 +98,16 @@ public class Smilerang_behaviour : MonoBehaviour {
         float reflex_y = Mathf.Sin(angle_reflex) * s_movement.magnitude;
 
         s_movement = new Vector2(reflex_x, reflex_y);
+    }
+
+    public void ChangeMaxSpeed(bool slow)
+    {
+        float sp = s_item_speed_change;
+        if (slow)
+            sp = -sp;
+
+        s_max_velocity += sp;
+        //Timer?
+
     }
 }

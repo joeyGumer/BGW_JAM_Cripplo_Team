@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4920232800227578}
   - component: {fileID: 212722593171026906}
+  - component: {fileID: 95352694112281626}
   m_Layer: 0
   m_Name: Player sprite
   m_TagString: Untagged
@@ -79,19 +80,19 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1880408497225830}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &61945534975057848
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -101,7 +102,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.093403816}
@@ -117,6 +118,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.4065814}
   m_EdgeRadius: 0
+--- !u!95 &95352694112281626
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1257145312284184}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e982e2f20d966d47975e58aaa2adbf1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114388094531519580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,12 +146,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac417d187f36cc408185316d00ce679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 1063152614593654, guid: 744a92c62e63e624abb57ab1d75c4e6f, type: 2}
   boomerang: {fileID: 1802595061376972, guid: ea429edc0ee9fe44e85d0444db782054, type: 2}
   alive: 1
   p_multiboomerang: 0
   p_hp_max: 3
   p_speed: 2
   p_with_acceleration: 1
+  p_boomerang_limit: 1
+  p_smile_effect_time: 5
+  p_dir_state: 0
+  p_smile_timer: 0
+  p_hp_current: 0
 --- !u!212 &212722593171026906
 SpriteRenderer:
   m_ObjectHideFlags: 1
