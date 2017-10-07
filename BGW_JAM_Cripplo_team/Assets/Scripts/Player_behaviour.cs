@@ -10,6 +10,14 @@ public enum PLAYER_DIRECTION
     P_DOWN,
 }
 
+public enum PLAYER_STATE
+{
+    P_IDLE,
+    P_WALK,
+    P_HURT,
+    P_DIE,
+}
+
 public class Player_behaviour : MonoBehaviour {
 
     public GameObject item = null;
@@ -26,6 +34,7 @@ public class Player_behaviour : MonoBehaviour {
 
 
     public PLAYER_DIRECTION p_dir_state;
+    public PLAYER_STATE p_state;
 
     Vector3 p_direction = Vector3.zero;
     public int p_boomerang_current = 0;
@@ -154,7 +163,15 @@ public class Player_behaviour : MonoBehaviour {
         mov.x = mov_horizontal * sp;
         mov.y = mov_vertical * sp;
 
-        transform.Translate(mov);
+        if (mov != Vector2.zero)
+        {
+            StateMachine(PLAYER_STATE.P_WALK);
+            transform.Translate(mov);
+        }
+        else
+        {
+            StateMachine(PLAYER_STATE.P_IDLE);
+        }
              
         p_direction = (p_last_position - transform.position).normalized;
     }
@@ -179,13 +196,18 @@ public class Player_behaviour : MonoBehaviour {
     //Activate when the player gets hurts
     void GetHurt()
     {
+        StateMachine(PLAYER_STATE.P_HURT);
+
         p_hp_current--;
         //Reduce the UI hp
 
         if(p_hp_current <= 0)
         {
             //Player is dead
+            StateMachine(PLAYER_STATE.P_DIE);
             alive = false;
+
+            //Wait some seconds?
             GameObject.Find("Main Game").GetComponent<Game_cycle>().FinishGame();
         }
 
@@ -271,5 +293,23 @@ public class Player_behaviour : MonoBehaviour {
     {
         p_smile_timer_on = true;
         p_smile_timer = p_smile_effect_time;
+    }
+
+    public void StateMachine(PLAYER_STATE state)
+    {
+        p_state = state;
+        switch (p_state)
+        {
+            case PLAYER_STATE.P_IDLE:
+                break;
+            case PLAYER_STATE.P_WALK:
+                break;
+            case PLAYER_STATE.P_HURT:
+                break;
+            case PLAYER_STATE.P_DIE:
+                break;
+        }
+
+        
     }
 }
