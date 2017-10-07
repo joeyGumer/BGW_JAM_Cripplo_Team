@@ -86,6 +86,7 @@ public class Player_behaviour : MonoBehaviour {
     void HandleInput()
     {
         Movement();
+        DirectionState();
 
         if (Input.GetKeyDown("space"))
         {
@@ -103,6 +104,14 @@ public class Player_behaviour : MonoBehaviour {
                 GetHurt();
                 Destroy(coll.gameObject);
             }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if(coll.collider.tag == "enemy")
+        {
+            GetHurt();
         }
     }
 
@@ -199,26 +208,34 @@ public class Player_behaviour : MonoBehaviour {
 
     void DirectionState()
     {
-        float dir_angle = Mathf.Atan2(p_direction.y, p_direction.x);
+        if (p_direction != Vector3.zero)
+        {
+            float dir_angle = Mathf.Atan2(p_direction.y, p_direction.x) * Mathf.Rad2Deg;
 
-        if(dir_angle < 45.0f || dir_angle > 315)
-        {
-            //RIGHT
-            p_dir_state = PLAYER_DIRECTION.P_RIGHT;
+
+            if (dir_angle < -135.0f || dir_angle >= 135.0f)
+            {
+                //RIGHT
+                p_dir_state = PLAYER_DIRECTION.P_RIGHT;
+            }
+            else if (dir_angle < 45.0F && dir_angle >= -45.0f)
+            {
+                //LEFT
+                p_dir_state = PLAYER_DIRECTION.P_LEFT;
+            }
+            else if (dir_angle < 135.0f && dir_angle >= 45.0f)
+            {
+                //DOWN
+                p_dir_state = PLAYER_DIRECTION.P_DOWN;
+            }
+            else if (dir_angle < -45.0f && dir_angle >= -135.0f )
+            {
+                //UP
+                p_dir_state = PLAYER_DIRECTION.P_UP;
+            }
         }
-        else if(dir_angle < 135)
+        else
         {
-            //UP
-            p_dir_state = PLAYER_DIRECTION.P_UP;
-        }
-        else if(dir_angle < 225 )
-        {
-            //LEFT
-            p_dir_state = PLAYER_DIRECTION.P_LEFT;
-        }
-        else if(dir_angle < 315 )
-        {
-            //DOWN
             p_dir_state = PLAYER_DIRECTION.P_DOWN;
         }
 

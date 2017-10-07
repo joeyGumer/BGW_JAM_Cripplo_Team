@@ -6,6 +6,7 @@ TagManager:
   tags:
   - smilerang
   - wall
+  - enemy
   layers:
   - Default
   - TransparentFX

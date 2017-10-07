@@ -1028,41 +1028,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 61052618314679296, guid: c91726d23d1900c46bde6f417e0f0575,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: -0.04794407
-      objectReference: {fileID: 0}
-    - target: {fileID: 61052618314679296, guid: c91726d23d1900c46bde6f417e0f0575,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 7.999422
-      objectReference: {fileID: 0}
-    - target: {fileID: 61052618314679296, guid: c91726d23d1900c46bde6f417e0f0575,
-        type: 2}
-      propertyPath: m_Offset.x
-      value: 0.04794228
-      objectReference: {fileID: 0}
-    - target: {fileID: 61052618314679296, guid: c91726d23d1900c46bde6f417e0f0575,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 6.0817614
-      objectReference: {fileID: 0}
-    - target: {fileID: 50762633183053610, guid: c91726d23d1900c46bde6f417e0f0575,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 50762633183053610, guid: c91726d23d1900c46bde6f417e0f0575,
-        type: 2}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 50762633183053610, guid: c91726d23d1900c46bde6f417e0f0575,
-        type: 2}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c91726d23d1900c46bde6f417e0f0575, type: 2}
   m_IsPrefabParent: 0
