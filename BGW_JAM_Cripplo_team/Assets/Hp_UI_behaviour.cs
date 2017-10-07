@@ -43,7 +43,6 @@ public class Hp_UI_behaviour : MonoBehaviour {
 
     void ChooseImageToChange(uint h, bool lose)
     {
-        Image tmp;
         switch(h)
         {
             case 1:
