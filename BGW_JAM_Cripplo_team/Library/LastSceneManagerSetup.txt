@@ -1,4 +1,16 @@
 sceneSetups:
 - path: Assets/Scene/Test scene.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/Test scene 1.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/Lose scene.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scene/Win scene.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/Scene/Main menu.unity
+  isLoaded: 0
+  isActive: 0

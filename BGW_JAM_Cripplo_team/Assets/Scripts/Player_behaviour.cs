@@ -177,6 +177,7 @@ public class Player_behaviour : MonoBehaviour {
         {
             //Player is dead
             alive = false;
+            GameObject.Find("Main Game").GetComponent<Game_cycle>().FinishGame();
         }
 
         if(!p_multiboomerang)
