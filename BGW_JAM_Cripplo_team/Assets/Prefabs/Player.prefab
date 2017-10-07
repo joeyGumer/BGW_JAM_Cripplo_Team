@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4920232800227578}
   - component: {fileID: 212722593171026906}
   - component: {fileID: 95352694112281626}
+  - component: {fileID: 114028013348055052}
   m_Layer: 0
   m_Name: Player sprite
   m_TagString: Untagged
@@ -68,7 +69,7 @@ Transform:
   m_GameObject: {fileID: 1257145312284184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: -0.09, z: 0}
-  m_LocalScale: {x: 0.1677382, y: 0.18103945, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 4007395053711234}
   m_RootOrder: 0
@@ -135,6 +136,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114028013348055052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1257145312284184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 735ffade8f72bd14993e91e65bf0f086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114388094531519580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,8 +167,14 @@ MonoBehaviour:
   p_with_acceleration: 1
   p_boomerang_limit: 1
   p_smile_effect_time: 5
+  p_double_effect_time: 1
   p_dir_state: 0
+  p_state: 0
+  p_boomerang_current: 0
   p_smile_timer: 0
+  p_smile_timer_on: 0
+  p_limit_timer: 0
+  p_limit_timer_on: 0
   p_hp_current: 0
 --- !u!212 &212722593171026906
 SpriteRenderer:
@@ -190,7 +208,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0d6223d7403fa30479f8a23c3b0a1c2d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8bac675606dc47649a549df298eb5d5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

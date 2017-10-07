@@ -14,6 +14,7 @@ public enum PLAYER_STATE
 {
     P_IDLE,
     P_WALK,
+    P_ATTACK,
     P_HURT,
     P_DIE,
 }
@@ -303,6 +304,8 @@ public class Player_behaviour : MonoBehaviour {
             case PLAYER_STATE.P_IDLE:
                 break;
             case PLAYER_STATE.P_WALK:
+                break;
+            case PLAYER_STATE.P_ATTACK:
                 break;
             case PLAYER_STATE.P_HURT:
                 break;
